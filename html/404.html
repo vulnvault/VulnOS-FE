@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - VulnOS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"> 
+    <link rel="icon" href="icong.png">
+    <style>
+        /* Styles specific to 404 page layout */
+        body.error-page-active { /* Added class for specific body styling */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Ensure theme transition */
+        }
+        .error-page-main-content { /* Renamed from error-page-main to avoid conflict if main has global styles */
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        /* The .landing-header on 404 page might not need to be sticky or have scroll effects,
+           so no specific JS targeting its ID for those behaviors is needed here.
+           The class .landing-header will provide base styling from style.css */
+    </style>
+</head>
+<body class="light-theme error-page-active page-visible">
+
+    <header class="landing-header" id="error-page-header">
+        <nav class="landing-nav container">
+            <a href="//" class="logo"> 
+                <img src="/logo.png" alt="VulnOS Logo" class="site-logo light-mode-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/FFFFFF/ED6A32?text=VulnOS&font=sharetechmono';"> 
+                <img src="/logo.png" alt="VulnOS Logo" class="site-logo dark-mode-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/0F172A/ED6A32?text=VulnOS&font=sharetechmono';"> 
+            </a>
+            <div class="header-actions">
+                <button id="theme-toggle-404" class="theme-toggle-button-shared" aria-label="Toggle theme">
+                    <span class="toggle-knob"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="error-page-main-content">
+        <div class="error-page-container container">
+            <div class="error-graphic-container">
+                <span class="error-graphic-char char1">4</span>
+                <span class="error-graphic-char char2">🛡️</span>
+                <span class="error-graphic-char char3">4</span>
+            </div>
+            <h1 class="error-message">System Alert: Resource Unreachable</h1>
+            <p class="error-submessage">
+                Our scanners indicate the requested resource is offline, has been relocated, or perhaps never existed in this sector.
+                Let's recalibrate and get you back on a valid learning path.
+            </p>
+            <div class="error-cta">
+                <a href="/" class="btn btn-primary btn-xlarge">Return to Command Center</a> 
+                <a href="/contact.html" class="btn btn-secondary btn-xlarge error-contact-btn">Report Anomaly</a> 
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Self-contained theme toggle logic for 404 page
+        (function() {
+            const body = document.body;
+            const themeToggle404 = document.getElementById('theme-toggle-404');
+
+            const applyTheme = (theme) => {
+                body.classList.remove('light-theme', 'dark-theme');
+                body.classList.add(theme + '-theme');
+                localStorage.setItem('vulnos_theme', theme);
+                if (themeToggle404) { // Ensure button exists
+                    themeToggle404.setAttribute('aria-pressed', theme === 'dark');
+                }
+            };
+
+            // Initialize theme
+            let currentTheme = localStorage.getItem('vulnos_theme') ||
+                                 (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(currentTheme);
+
+            if (themeToggle404) {
+                themeToggle404.addEventListener('click', () => {
+                    const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                    // If you explicitly set a choice, you might want to mark it
+                    // localStorage.setItem('vulnos_theme_explicit_choice', 'true');
+                });
+            }
+
+            // Listen for system theme changes (optional, but good UX)
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                    // Only update if no explicit user preference is stored via click
+                     if (!localStorage.getItem('vulnos_theme')) { // Or a more specific flag like 'vulnos_theme_explicit_choice'
+                        applyTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

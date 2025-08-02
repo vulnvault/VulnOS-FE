@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnOS - Practical Cybersecurity Training & Hands-On Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+</head>
+<body class="light-theme"> <div class="page-wrapper">
+        <header class="landing-header" id="landing-header">
+            <nav class="landing-nav container">
+                <a href="/" class="logo">
+                    <img src="logo.png" alt="VulnOS Logo" class="site-logo light-mode-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/FFFFFF/ED6A32?text=VulnOS&font=sharetechmono';">
+                    <img src="logo.png" alt="VulnOS Logo" class="site-logo dark-mode-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/0F172A/ED6A32?text=VulnOS&font=sharetechmono';">
+                </a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="//" class="nav-link-item active-nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link-item">About</a></li>
+                    <li><a href="features.html" class="nav-link-item">Features</a></li>
+                    <li><a href="pricing.html" class="nav-link-item">Pricing</a></li>
+                    <li><a href="contact.html" class="nav-link-item">Contact Us</a></li>
+                </ul>
+                <div class="header-actions">
+                    <a href="http://learn.vulnos.tech" class="btn btn-secondary btn-small nav-action-btn">Login</a>
+                    <a href="http://learn.vulnos.tech/signup.html" class="btn btn-primary btn-small nav-action-btn">Sign Up</a>
+                    <button id="theme-toggle" aria-label="Toggle theme">
+                        <span class="toggle-knob"></span>
+                    </button>
+                </div>
+                <button id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                    <span class="hamburger-line line-3"></span>
+                </button>
+            </nav>
+        </header>
+
+        <main class="landing-main">
+            <section id="hero" class="hero-section">
+                <div class="hero-background-shapes" aria-hidden="true">
+                    <div class="hero-circle circle-1"></div>
+                    <div class="hero-circle circle-2"></div>
+                    <div class="hero-circle circle-3"></div>
+                </div>
+                <div class="container hero-content">
+                    <h1 class="hero-title el-to-animate" data-anim-order="1">
+                        Master Cybersecurity Via <span class="highlight">Practice</span>.
+                    </h1>
+                    <p class="hero-subtitle el-to-animate" data-anim-order="2">
+                        VulnOS: Structured learning paths, hands-on labs, and accredited certifications for practical cybersecurity education.
+                    </p>
+                    <div class="hero-cta-buttons el-to-animate" data-anim-order="3">
+                        <a href="https://learn.vulnos.tech" class="btn btn-primary btn-xlarge">Explore Paths</a>
+                        <a href="https://learn.vulnos.tech/signup.html" class="btn btn-secondary btn-xlarge">Get Started Free</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mission" class="landing-content-section mission-section section-to-animate">
+                <div class="container">
+                    <span class="section-eyebrow el-to-animate">Our Core Purpose</span>
+                    <h2 class="section-title el-to-animate" data-anim-order="1">Democratizing Cybersecurity Education.</h2>
+                    <p class="section-description el-to-animate" data-anim-order="2">
+                        We believe high-quality, practical cybersecurity training shouldn't be a luxury. VulnOS is committed to making hands-on learning accessible, offering real-world scenarios where learners can practice vulnerability identification, penetration testing, and incident response in a safe, engaging environment.
+                    </p>
+                </div>
+            </section>
+
+            <section id="about" class="landing-content-section text-section alt-bg section-to-animate">
+                <div class="container">
+                    <span class="section-eyebrow el-to-animate">The VulnOS Advantage</span>
+                    <h2 class="section-title el-to-animate" data-anim-order="1">Learn by Doing, Not Just Watching.</h2>
+                    <div class="points-grid">
+                        <div class="point-item el-to-animate" data-anim-order="2">
+                            <div class="point-icon">🎯</div><h3>Real-World Labs</h3>
+                            <p>Engage in simulated environments (virtual machines or sandboxed environments) to solve real-world problems and practice on labs mimicking actual enterprise systems.</p>
+                        </div>
+                        <div class="point-item el-to-animate" data-anim-order="3">
+                            <div class="point-icon">📈</div><h3>Skill-Based Paths</h3>
+                            <p>Follow structured paths with multiple levels for all skill sets, from newcomers to seasoned professionals, covering specialized topics like web application security, network security, and incident response.</p>
+                        </div>
+                        <div class="point-item el-to-animate" data-anim-order="4">
+                            <div class="point-icon">🏆</div><h3>Valuable Certifications</h3>
+                            <p>Earn accredited certifications and digital badges recognized by industry professionals to validate your skills upon completing courses and assessments.</p>
+                        </div>
+                    </div>
+                    <div class="section-cta el-to-animate" data-anim-order="5">
+                        <a href="about.html" class="btn btn-outline">More About VulnOS</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-it-works" class="landing-content-section section-to-animate">
+                <div class="container">
+                    <span class="section-eyebrow el-to-animate">Your Learning Journey</span>
+                    <h2 class="section-title el-to-animate" data-anim-order="1">A Clear Path to Expertise</h2>
+                    <div class="steps-grid">
+                        <div class="step-item card hover-effect-card el-to-animate" data-anim-order="2">
+                            <div class="step-number-badge">1</div>
+                            <img src="https://placehold.co/400x260/FFF1F2/DC2626?text=Select+Path&font=sharetechmono" alt="Select Learning Path" class="step-image" onerror="this.src='https://placehold.co/400x260/CCCCCC/969696?text=Image+Not+Found'">
+                            <h4>Choose Your Path</h4>
+                            <p>Choose from diverse learning paths tailored to your goals, from beginner to advanced tracks in various cybersecurity specializations.</p>
+                        </div>
+                        <div class="step-item card hover-effect-card el-to-animate" data-anim-order="3">
+                            <div class="step-number-badge">2</div>
+                            <img src="https://placehold.co/400x260/EFF6FF/2563EB?text=Engage+Modules&font=sharetechmono" alt="Engage Learning Modules" class="step-image" onerror="this.src='https://placehold.co/400x260/CCCCCC/969696?text=Image+Not+Found'">
+                            <h4>Engage with Modules</h4>
+                            <p>Engage with self-paced modules featuring clear theory, practical examples, and optional instructor-led sessions for deep dives.</p>
+                        </div>
+                        <div class="step-item card hover-effect-card el-to-animate" data-anim-order="4">
+                            <div class="step-number-badge">3</div>
+                            <img src="https://placehold.co/400x260/F0FDF4/16A34A?text=Practice+Labs&font=sharetechmono" alt="Practice Hands-on Labs" class="step-image" onerror="this.src='https://placehold.co/400x260/CCCCCC/969696?text=Image+Not+Found'">
+                            <h4>Practice in Hands-On Labs</h4>
+                            <p>Practice in hands-on labs and CTF challenges, tackling real-world vulnerabilities in safe, controlled simulated environments.</p>
+                        </div>
+                        <div class="step-item card hover-effect-card el-to-animate" data-anim-order="5">
+                            <div class="step-number-badge">4</div>
+                            <img src="https://placehold.co/400x260/F7FEE7/65A30D?text=Earn+Certs&font=sharetechmono" alt="Earn Certifications" class="step-image" onerror="this.src='https://placehold.co/400x260/CCCCCC/969696?text=Image+Not+Found'">
+                            <h4>Earn Certifications</h4>
+                            <p>Complete learning paths and assessments to earn accredited, industry-recognized certifications and digital badges.</p>
+                        </div>
+                    </div>
+                     <div class="section-cta el-to-animate" data-anim-order="6">
+                        <a href="https://learn.vulnos.tech/signup.html" class="btn btn-primary">Start Your Journey</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="landing-content-section alt-bg section-to-animate">
+                <div class="container">
+                    <span class="section-eyebrow el-to-animate">Platform Highlights</span>
+                    <h2 class="section-title el-to-animate" data-anim-order="1">Everything You Need to Succeed</h2>
+                    <ul class="features-list">
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="2"><span class="feature-list-icon">📚</span><div><strong>Structured Learning Paths:</strong> For all skill levels, from beginner to advanced.</div></li>
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="3"><span class="feature-list-icon">💻</span><div><strong>Interactive Labs & CTFs:</strong> Real-world simulations and gamified challenges.</div></li>
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="4"><span class="feature-list-icon">🎓</span><div><strong>Accredited Certifications:</strong> Validate your expertise with industry-recognized credentials.</div></li>
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="5"><span class="feature-list-icon">📊</span><div><strong>Personalized Dashboard:</strong> Track your progress, completed courses, achievements, certifications, and skills learned.</div></li>
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="6"><span class="feature-list-icon">⏱️</span><div><strong>Self-Paced Learning:</strong> Learn anytime, anywhere, at your own speed with on-demand content.</div></li>
+                        <li class="el-to-animate hover-effect-list-item" data-anim-order="7"><span class="feature-list-icon">🤝</span><div><strong>Community & Networking:</strong> Forums, discussion boards, and a mentorship program (Coming Soon).</div></li>
+                    </ul>
+                     <div class="section-cta el-to-animate" data-anim-order="8">
+                        <a href="features.html" class="btn btn-outline">Discover All Features</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- <section id="testimonials" class="landing-content-section testimonials-section section-to-animate">
+                <div class="container">
+                    <span class="section-eyebrow el-to-animate">What Our Users Say</span>
+                    <h2 class="section-title el-to-animate" data-anim-order="1">Trusted by Learners & Professionals</h2>
+                    <div class="testimonial-carousel-wrapper el-to-animate" data-anim-order="2">
+                        <div class="testimonial-carousel" id="testimonial-carousel">
+                            <div class="testimonial-card-outer">
+                                <div class="testimonial-card card">
+                                    <img src="https://placehold.co/80x80/E2E8F0/334155?text=AP" alt="User Alex P." class="testimonial-avatar" onerror="this.src='https://placehold.co/80x80/CCCCCC/969696?text=User'">
+                                    <p class="testimonial-text">"The hands-on labs on VulnOS are incredibly realistic and directly applicable to real-world scenarios. My practical skills have skyrocketed!"</p>
+                                    <p class="testimonial-author">- Alex P., Aspiring Pentester</p>
+                                    <div class="testimonial-rating">★★★★★</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card-outer">
+                                <div class="testimonial-card card">
+                                    <img src="https://placehold.co/80x80/CBD5E0/475569?text=SK" alt="User Sarah K." class="testimonial-avatar" onerror="this.src='https://placehold.co/80x80/CCCCCC/969696?text=User'">
+                                    <p class="testimonial-text">"VulnOS's structured learning paths made complex topics easy to grasp. The blend of theory and immediate lab practice is perfect."</p>
+                                    <p class="testimonial-author">- Sarah K., Security Analyst</p>
+                                    <div class="testimonial-rating">★★★★★</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card-outer">
+                                <div class="testimonial-card card">
+                                    <img src="https://placehold.co/80x80/94A3B8/64748B?text=JB" alt="User John B." class="testimonial-avatar" onerror="this.src='https://placehold.co/80x80/CCCCCC/969696?text=User'">
+                                    <p class="testimonial-text">"Our team's cybersecurity proficiency has noticeably improved with VulnOS. The enterprise features and progress tracking are invaluable for corporate training."</p>
+                                    <p class="testimonial-author">- John B., CTO at TechSolutions</p>
+                                    <div class="testimonial-rating">★★★★☆</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card-outer">
+                                <div class="testimonial-card card">
+                                    <img src="https://placehold.co/80x80/E2E8F0/334155?text=LM" alt="User Laura M." class="testimonial-avatar" onerror="this.src='https://placehold.co/80x80/CCCCCC/969696?text=User'">
+                                    <p class="testimonial-text">"The CTF Arena is addictive! It's a fantastic way to test my skills against others and apply what I've learned in a fun, competitive environment."</p>
+                                    <p class="testimonial-author">- Laura M., Cybersecurity Student</p>
+                                    <div class="testimonial-rating">★★★★★</div>
+                                </div>
+                            </div>
+                             <div class="testimonial-card-outer"> 
+                                <div class="testimonial-card card">
+                                    <img src="https://placehold.co/80x80/E0F2FE/0891B2?text=RD" alt="User Raj D." class="testimonial-avatar" onerror="this.src='https://placehold.co/80x80/CCCCCC/969696?text=User'">
+                                    <p class="testimonial-text">"As an IT professional looking to upskill, VulnOS provided the practical, hands-on experience I needed. The platform is intuitive and the scenarios are top-notch."</p>
+                                    <p class="testimonial-author">- Raj D., IT Professional</p>
+                                    <div class="testimonial-rating">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control prev" id="testimonial-prev" aria-label="Previous testimonial">&#10094;</button>
+                        <button class="carousel-control next" id="testimonial-next" aria-label="Next testimonial">&#10095;</button>
+                        <div class="carousel-dots" id="carousel-dots">
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <section id="final-cta" class="cta-section section-to-animate">
+                <div class="container">
+                    <h2 class="cta-title el-to-animate" data-anim-order="1">Ready to Build Real-World Cyber Skills?</h2>
+                    <p class="cta-subtitle el-to-animate" data-anim-order="2">
+                        Join VulnOS and start your practical cybersecurity journey. Explore free introductory labs or subscribe for full access to advanced content and certifications.
+                    </p>
+                    <div class="section-cta el-to-animate" data-anim-order="3"> 
+                        <a href="https://learn.vulnos.tech/signup.html" class="btn btn-primary btn-xlarge">Create Your Free Account</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="landing-footer">
+            <div class="footer-separator-line" aria-hidden="true"></div>
+            <div class="footer-dynamic-shapes" aria-hidden="true">
+                <div class="shape shape1"></div>
+                <div class="shape shape2"></div>
+                <div class="shape shape3"></div>
+            </div>
+            <div class="container footer-content-grid">
+                <div class="footer-column about-column">
+                    <a href="index.html" class="logo footer-logo-link">
+                        <img src="logo.png" alt="VulnOS Logo" class="site-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/030712/F28657?text=VulnOS&font=sharetechmono';">
+                    </a>
+                    <p class="footer-tagline">Practical cybersecurity education for a safer digital world.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter" class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="LinkedIn" class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.16v7.37h2.16v-3.57c0-.9.25-1.79 1.3-1.79s1.17.89 1.17 1.79v3.57zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.09 9.94h2.17v-7.37H5.8z"/></svg></a>
+                        <a href="#" aria-label="GitHub" class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="paths.html">Learning Paths</a></li>
+                        <li><a href="http://learn.vulnos.tech/labs" target="_blank" rel="noopener noreferrer">Practice Labs</a></li>
+                        <li><a href="http://arena.vulnos.tech" target="_blank" rel="noopener noreferrer">CTF Arena</a></li>
+                        <li><a href="features.html">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="http://blog.vulnos.tech" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                        <li><a href="http://docs.vulnos.tech" target="_blank" rel="noopener noreferrer">Docs</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom-bar">
+                <div class="container">
+                    <p>&copy; <span id="current-year"></span> VulnOS. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="custom-popup-overlay" class="custom-popup-overlay">
+        <div id="custom-popup" class="custom-popup">
+            <h3 id="custom-popup-title">Notification</h3>
+            <p id="custom-popup-message">Sample message.</p>
+            <div class="custom-popup-actions">
+                <button id="custom-popup-close-btn" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
