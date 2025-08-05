@@ -19,7 +19,7 @@
                     <img src="logo.png" alt="VulnOS Logo" class="site-logo dark-mode-logo" onerror="this.onerror=null; this.src='https://placehold.co/150x40/0F172A/ED6A32?text=VulnOS&font=sharetechmono';">
                 </a>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="/#hero" class="nav-link-item">Home</a></li>
+                    <li><a href="/" class="nav-link-item">Home</a></li>
                     <li><a href="about.html" class="nav-link-item">About</a></li>
                     <li><a href="features.html" class="nav-link-item">Features</a></li>
                     <li><a href="pricing.html" class="nav-link-item">Pricing</a></li>
@@ -88,7 +88,8 @@
 
                         <div class="contact-form-area card hover-effect-card el-to-animate" data-anim-order="2">
                             <h3>Send Us a Message</h3>
-                            <form id="contactForm" action="#" method="POST">
+                            <!-- The form action is removed as it's handled by script.js -->
+                            <form id="contactForm">
                                 <div class="form-group">
                                     <label for="contact-name">Full Name</label>
                                     <input type="text" id="contact-name" name="name" placeholder="e.g., Alex Ryder" required>
@@ -176,32 +177,32 @@
         </footer>
     </div>
 
+    <!-- This is the popup HTML that the script will use -->
+    <div id="custom-popup-overlay" class="custom-popup-overlay">
+        <div id="custom-popup" class="custom-popup">
+            <h3 id="custom-popup-title">Notification</h3>
+            <p id="custom-popup-message">Sample message.</p>
+            <div class="custom-popup-actions">
+                <button id="custom-popup-close-btn" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         // Script to highlight the current page in the navigation
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop() || '/';
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const navLinks = document.querySelectorAll('.nav-links a.nav-link-item');
             
-            navLinks.forEach(link => link.classList.remove('active-nav-link')); // Clear all first
+            navLinks.forEach(link => link.classList.remove('active-nav-link'));
 
             navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href').split('/').pop().split('#')[0];
-                if (linkPage === currentPage && currentPage !== '/') { // For non-index pages
+                const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
+                if (linkPage === currentPage) {
                     link.classList.add('active-nav-link');
-                } else if ((currentPage === '/' || currentPage === '') && (link.getAttribute('href') === '/' || link.getAttribute('href') === '/#hero')) {
-                     // Only highlight specific home links for /
-                     if(link.getAttribute('href').includes('/')){
-                        link.classList.add('active-nav-link');
-                     }
                 }
             });
-
-            // If on / (or root) and no other link is active, ensure the 'Home' link is.
-            if ( (currentPage === '/' || currentPage === '') && !document.querySelector('.nav-links a.nav-link-item.active-nav-link')) {
-                const homeLink = document.querySelector('.nav-links a.nav-link-item[href^="/"]');
-                if(homeLink) homeLink.classList.add('active-nav-link');
-            }
         });
     </script>
 </body>
