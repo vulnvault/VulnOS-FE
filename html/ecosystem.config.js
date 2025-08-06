@@ -2,16 +2,17 @@
 // PM2 configuration specifically for the contact form server.
 
 module.exports = {
-  apps : [{
-    name   : "vulnos-contact-form",     // A unique name for this server process
-    script : "./server.js",             // Path to the contact form server.js
-    env    : {
+  apps: [{
+    name: 'vulnos-contact-server', // A name for your app
+    script: 'server.js', // The path to your server file
+    watch: '.',
+    
+    env_production: {
       "NODE_ENV": "production",
-      "PORT": 3001,                     // Running on a different port to avoid conflicts
-      
-      // Paste your Microsoft 365 credentials here
+      "PORT": 3001, // Or whatever port you use in production
       "M365_USER_EMAIL": "no-reply@vulnos.tech",
-      "M365_APP_PASSWORD": "cyswrjldytzrmnpw"
+      "M365_APP_PASSWORD": "cyswrjldytzrmnpw",
+      "CONTACT_FORM_RECIPIENT": "contact@vulnos.tech"
     }
   }]
 };

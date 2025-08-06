@@ -1,14 +1,16 @@
 // script.js - VulnOS Site-wide Scripts
 
 document.addEventListener('DOMContentLoaded', () => {
-    'use strict'; 
+    'use strict';
 
+    // --- Element Cache ---
     const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-    const navLinksContainer = document.getElementById('nav-links'); 
+    const navLinksContainer = document.getElementById('nav-links');
     const landingHeader = document.getElementById('landing-header');
     const currentYearSpan = document.getElementById('current-year');
+    const contactForm = document.getElementById('contactForm'); // ID from your final contact.html
 
     // --- 1. Theme Toggle Functionality ---
     if (themeToggle) {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         let currentTheme = localStorage.getItem('vulnos_theme');
-        if (!currentTheme) { 
+        if (!currentTheme) {
             currentTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         applyTheme(currentTheme);
@@ -28,12 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('click', () => {
             const newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('vulnos_theme_explicit_choice', 'true'); // User made a choice
+            localStorage.setItem('vulnos_theme_explicit_choice', 'true');
         });
 
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.getItem('vulnos_theme_explicit_choice')) { 
+                if (!localStorage.getItem('vulnos_theme_explicit_choice')) {
                     applyTheme(e.matches ? 'dark' : 'light');
                 }
             });
@@ -46,10 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const isActive = navLinksContainer.classList.toggle('active');
             mobileNavToggle.classList.toggle('active');
             mobileNavToggle.setAttribute('aria-expanded', isActive);
-            document.body.classList.toggle('no-scroll', isActive); 
+            document.body.classList.toggle('no-scroll', isActive);
         });
 
-        navLinksContainer.querySelectorAll('a').forEach(link => { // Target all 'a' tags within navLinksContainer
+        navLinksContainer.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 if (navLinksContainer.classList.contains('active')) {
                     navLinksContainer.classList.remove('active');
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         window.addEventListener('scroll', handleScrollHeader, { passive: true });
-        handleScrollHeader(); 
+        handleScrollHeader();
     }
 
     // --- 4. Dynamic Footer Year ---
@@ -80,14 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 5. Smooth Scroll & Active Nav Link Highlighting (Homepage Specific) ---
-    // This logic is primarily for the homepage with multiple sections.
-    // For other pages, a simpler active link script is embedded in each HTML file.
-    if (document.body.classList.contains('homepage')) { // Add 'homepage' class to body of index.html
+    if (document.body.classList.contains('homepage')) {
         const navLinkItemsForScroll = document.querySelectorAll('#nav-links > li > a.nav-link-item[href^="index.html#"], #nav-links > li > a.nav-link-item[href^="#"]');
         const sectionsForNavHighlight = Array.from(navLinkItemsForScroll)
             .map(link => {
                 const href = link.getAttribute('href');
-                const sectionId = href.includes('#') ? href.substring(href.lastIndexOf('#')) : null; 
+                const sectionId = href.includes('#') ? href.substring(href.lastIndexOf('#')) : null;
                 if (sectionId && sectionId.length > 1) {
                     try { return document.querySelector(sectionId); } catch (e) { return null; }
                 }
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rootMargin: `-${headerOffsetForNav}px 0px -${window.innerHeight - headerOffsetForNav - 150}px 0px`,
                 threshold: 0.01
             };
-            
+
             const observerNav = new IntersectionObserver(entries => {
                 let intersectingSections = [];
                 entries.forEach(entry => {
@@ -112,18 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (intersectingSections.length > 0) {
-                    intersectingSections.sort((a,b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+                    intersectingSections.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
                     const topMostVisibleSectionId = intersectingSections[0].id;
                     const newActiveLink = navLinksContainer.querySelector(`.nav-link-item[href$="#${topMostVisibleSectionId}"]`);
                     if (newActiveLink && newActiveLink !== currentActiveNavLink) {
-                        if(currentActiveNavLink) currentActiveNavLink.classList.remove('active-nav-link');
+                        if (currentActiveNavLink) currentActiveNavLink.classList.remove('active-nav-link');
                         newActiveLink.classList.add('active-nav-link');
                         currentActiveNavLink = newActiveLink;
                     }
                 } else if (window.scrollY < sectionsForNavHighlight[0].offsetTop - headerOffsetForNav) {
                     const homeLink = navLinksContainer.querySelector('.nav-link-item[href="index.html"], .nav-link-item[href="index.html#hero"]');
-                    if(currentActiveNavLink && currentActiveNavLink !== homeLink) currentActiveNavLink.classList.remove('active-nav-link');
-                    if(homeLink && !homeLink.classList.contains('active-nav-link')) {
+                    if (currentActiveNavLink && currentActiveNavLink !== homeLink) currentActiveNavLink.classList.remove('active-nav-link');
+                    if (homeLink && !homeLink.classList.contains('active-nav-link')) {
                         homeLink.classList.add('active-nav-link');
                         currentActiveNavLink = homeLink;
                     }
@@ -140,12 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        anchor.addEventListener('click', function (e) {
+                        anchor.addEventListener('click', function(e) {
                             e.preventDefault();
                             const headerOffset = landingHeader?.offsetHeight || 64;
                             let elementPosition = targetElement.getBoundingClientRect().top;
                             let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                            if (targetId === "#hero") offsetPosition = 0; 
+                            if (targetId === "#hero") offsetPosition = 0;
                             window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                         });
                     }
@@ -154,28 +154,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     // --- 6. Intersection Observer for Scroll Animations (Fade/Slide In) ---
     const elementsToAnimate = document.querySelectorAll('.section-to-animate, .el-to-animate');
     if ("IntersectionObserver" in window && elementsToAnimate.length > 0) {
-        const elementObserverOptions = {
-            root: null,
-            rootMargin: '0px 0px -10% 0px',
-            threshold: 0.05
-        };
         const elementObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const delay = entry.target.dataset.animDelay || '0';
                     entry.target.style.transitionDelay = `${delay}s`;
                     entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
-        }, elementObserverOptions);
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
         elementsToAnimate.forEach(el => elementObserver.observe(el));
-    } else { 
-        elementsToAnimate.forEach(el => el.classList.add('in-view')); 
+    } else {
+        elementsToAnimate.forEach(el => el.classList.add('in-view'));
     }
 
     // --- 7. Testimonial Carousel Functionality (If on homepage) ---
@@ -188,11 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (carousel && prevButton && nextButton && dotsContainer) {
             const items = carousel.querySelectorAll('.testimonial-card-outer');
             const totalItems = items.length;
-            let itemsPerView = 3; 
-            
+            let itemsPerView = 3;
+
             let currentIndex = 0;
             let autoSlideInterval;
-            const slideDuration = 5000; 
+            const slideDuration = 5000;
 
             function updateItemsPerView() {
                 if (window.innerWidth < 768) itemsPerView = 1;
@@ -210,13 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 prevButton.disabled = currentIndex === 0;
-                nextButton.disabled = currentIndex >= totalSlides -1;
+                nextButton.disabled = currentIndex >= totalSlides - 1;
             }
-            
+
             function createDots() {
-                dotsContainer.innerHTML = ''; 
+                dotsContainer.innerHTML = '';
                 const numDots = Math.ceil(totalItems / itemsPerView);
-                if (numDots <= 1) return; // Don't create dots if only one slide
+                if (numDots <= 1) return;
 
                 for (let i = 0; i < numDots; i++) {
                     const dot = document.createElement('button');
@@ -237,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.style.flex = `0 0 ${100 / itemsPerView}%`;
                 });
                 createDots();
-                updateCarousel(); 
+                updateCarousel();
             }
 
             nextButton.addEventListener('click', () => {
@@ -256,10 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     resetAutoSlide();
                 }
             });
-            
+
             function startAutoSlide() {
-                stopAutoSlide(); 
-                if (Math.ceil(totalItems / itemsPerView) <= 1) return; // Don't auto-slide if only one slide
+                stopAutoSlide();
+                if (Math.ceil(totalItems / itemsPerView) <= 1) return;
                 autoSlideInterval = setInterval(() => {
                     const totalSlides = Math.ceil(totalItems / itemsPerView);
                     currentIndex = (currentIndex + 1) % totalSlides;
@@ -281,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 carouselWrapper.addEventListener('mouseenter', stopAutoSlide);
                 carouselWrapper.addEventListener('mouseleave', startAutoSlide);
             }
-            
+
             setupCarousel();
             startAutoSlide();
 
@@ -291,16 +285,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 resizeTimeout = setTimeout(() => {
                     const oldItemsPerView = itemsPerView;
                     updateItemsPerView();
-                    if (oldItemsPerView !== itemsPerView) { // Only re-setup if itemsPerView changes
-                        currentIndex = 0; // Reset to first slide on breakpoint change
-                        setupCarousel(); 
+                    if (oldItemsPerView !== itemsPerView) {
+                        currentIndex = 0;
+                        setupCarousel();
                     }
                     resetAutoSlide();
-                }, 250); 
+                }, 250);
             });
         }
     }
-
 
     // --- 8. Custom Popup Functionality (Globally available) ---
     const customPopupOverlay = document.getElementById('custom-popup-overlay');
@@ -312,16 +305,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.showCustomPopup = function(message, title = "Notification", type = "info") {
         if (!customPopupOverlay || !customPopup || !customPopupTitle || !customPopupMessage) {
             console.warn("Custom popup elements not found. Falling back to alert.");
-            alert(`${title}: ${message}`); 
+            alert(`${title}: ${message}`);
             return;
         }
         customPopupTitle.textContent = title;
-        customPopupMessage.innerHTML = message; 
-        customPopup.className = 'custom-popup'; 
-        if (type) customPopup.classList.add(`popup-${type}`); 
+        customPopupMessage.innerHTML = message;
+        customPopup.className = 'custom-popup';
+        if (type) customPopup.classList.add(`popup-${type}`);
 
-        customPopupOverlay.style.display = 'flex'; 
-        requestAnimationFrame(() => { 
+        customPopupOverlay.style.display = 'flex';
+        requestAnimationFrame(() => {
             customPopupOverlay.classList.add('active');
         });
     };
@@ -338,111 +331,130 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // script.js
+    // --- 9. FAQ Accordion Logic (If on a page with FAQs) ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const questionButton = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
 
-// --- 9. FAQ Accordion Logic (If on a page with FAQs) ---
-const faqItems = document.querySelectorAll('.faq-item');
-if (faqItems.length > 0) {
-    faqItems.forEach(item => {
-        const questionButton = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
+            if (questionButton && answer) {
+                questionButton.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    item.classList.toggle('active');
+                    questionButton.setAttribute('aria-expanded', String(!isActive));
 
-        if (questionButton && answer) {
-            questionButton.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
+                    if (!isActive) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            }
+        });
+    }
 
-                // Toggle active class on the parent item
-                item.classList.toggle('active');
-                questionButton.setAttribute('aria-expanded', String(!isActive));
+    // --- 10. Contact Form Submission Logic (Updated for PHP) ---
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-                if (!isActive) { // If item was closed and is now being opened
-                    // The '.active' class now applies CSS for padding.
-                    // scrollHeight will be read after CSS padding is applied by the class.
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                } else { // If item was open and is now being closed
-                    answer.style.maxHeight = null; // Reverts to CSS max-height: 0
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner"></span> Sending...';
+
+            const formData = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                subject: document.getElementById('contact-subject').value,
+                message: document.getElementById('contact-message').value,
+            };
+
+            try {
+                const response = await fetch('contact-handler.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    const successMessage = `${result.message}<br><br>Your reference ticket number is: <strong>${result.ticketNumber}</strong>`;
+                    showCustomPopup(successMessage, 'Message Sent!', 'success');
+                    contactForm.reset();
+                } else {
+                    showCustomPopup(result.message || 'An unknown error occurred.', 'Submission Failed', 'error');
                 }
-            });
-        }
-    });
-}
+            } catch (error) {
+                console.error('Contact form submission error:', error);
+                showCustomPopup('Could not connect to the server. Please check your connection and try again.', 'Connection Error', 'error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
+        });
+    }
 
-});
-
-
-// script.js (ensure this is loaded on all your pages)
-
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Page Load Animation ---
-    // Add 'page-visible' class to trigger fade-in once content is loaded
+    // --- 11. Page Load/Exit Animations ---
     document.body.classList.add('page-visible');
 
-    // --- Page Exit Animation ---
-    const allLinks = document.querySelectorAll('a');
-
-    allLinks.forEach(link => {
+    document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             const target = this.getAttribute('target');
             const download = this.hasAttribute('download');
             const isMailtoOrTel = href && (href.startsWith('mailto:') || href.startsWith('tel:'));
             const isJavascriptVoid = href && href.toLowerCase().startsWith('javascript:void');
+            let isSamePageHashLink = href && href.startsWith('#');
 
-            // Determine if the link is a same-page hash link
-            let isSamePageHashLink = false;
-            if (href && href.startsWith('#')) {
-                isSamePageHashLink = true;
-            } else if (href) {
+            if (href && !isSamePageHashLink) {
                 try {
                     const linkUrl = new URL(href, window.location.origin);
                     if (linkUrl.pathname === window.location.pathname && linkUrl.hash) {
                         isSamePageHashLink = true;
                     }
-                } catch (err) {
-                    // If href is not a valid URL part (e.g. just a hash), it might be caught here
-                }
+                } catch (err) {}
             }
-            
-            // Proceed with animation only if it's an internal navigation link
-            if (href && !isSamePageHashLink && !isMailtoOrTel && target !== '_blank' && !download && !isJavascriptVoid) {
-                const currentHostname = window.location.hostname;
-                let linkHostname;
 
+            if (href && !isSamePageHashLink && !isMailtoOrTel && target !== '_blank' && !download && !isJavascriptVoid) {
+                let isInternal = false;
                 try {
-                    // new URL() correctly resolves relative paths like "about" or "/about"
-                    linkHostname = new URL(href, window.location.origin).hostname;
+                    isInternal = new URL(href, window.location.origin).hostname === window.location.hostname;
                 } catch (error) {
-                    // If href is not a full URL or easily resolvable (e.g. just "about"),
-                    // assume it's internal if it doesn't look like an external protocol.
-                    // This part might need adjustment based on your exact link structures.
                     if (!href.match(/^https?:\/\//) && !href.match(/^\/\//)) {
-                         linkHostname = currentHostname;
-                    } else {
-                        // Could be an invalid or external URL, skip animation
-                        return;
+                        isInternal = true;
                     }
                 }
 
-                if (linkHostname === currentHostname) {
-                    e.preventDefault(); // Prevent immediate navigation
-                    document.body.classList.remove('page-visible'); // Start fade-out
-
+                if (isInternal) {
+                    e.preventDefault();
+                    document.body.classList.remove('page-visible');
                     setTimeout(() => {
-                        window.location.href = href; // Navigate after animation
-                    }, 400); // Must match CSS transition duration
+                        window.location.href = href;
+                    }, 400);
                 }
             }
         });
     });
 
-    // Handle browser back/forward button behavior (pageshow event for bfcache)
     window.addEventListener('pageshow', function(event) {
-        // event.persisted is true if the page is loaded from the bfcache
         if (event.persisted) {
-            document.body.classList.remove('page-visible'); // Remove class to re-trigger transition
-            // Force a reflow, ensuring the class removal is processed before adding it back
-            void document.body.offsetWidth;
-            document.body.classList.add('page-visible'); // Re-apply fade-in
+            document.body.classList.add('page-visible');
+        }
+    });
+
+    // --- 12. Active Page Navigation Link Highlighting ---
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-links a.nav-link-item');
+    
+    navLinks.forEach(link => link.classList.remove('active-nav-link'));
+
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
+        if (linkPage === currentPage) {
+            link.classList.add('active-nav-link');
         }
     });
 });
